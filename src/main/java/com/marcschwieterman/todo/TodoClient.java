@@ -11,44 +11,44 @@ import java.net.URI;
 import java.util.List;
 
 public class TodoClient {
-	
-	private static final String PATH = "todo";
+
+    private static final String PATH = "todo";
 
     private WebResource resource;
 
-	public TodoClient(URI baseUri) {
-		ClientConfig cc = new DefaultClientConfig();
+    public TodoClient(URI baseUri) {
+        ClientConfig cc = new DefaultClientConfig();
         Client client = Client.create(cc);
-		resource = client.resource(baseUri);
-	}
-	
-	public List<Todo> list() {
-		return resource.path(PATH).get(new GenericType<List<Todo>>() {
+        resource = client.resource(baseUri);
+    }
+
+    public List<Todo> list() {
+        return resource.path(PATH).get(new GenericType<List<Todo>>() {
         });
-	}
+    }
 
-	public Todo show(Long id) {
-		ClientResponse response = resource.path(PATH).path(id.toString()).get(ClientResponse.class);
-		if(response.getStatus() == 200) {
-			return response.getEntity(Todo.class);
-		}
-		return null;
-	}
-	
-	public Todo create(Todo todo) {
-		return resource.path(PATH).post(Todo.class, todo);
-	}
+    public Todo show(Long id) {
+        ClientResponse response = resource.path(PATH).path(id.toString()).get(ClientResponse.class);
+        if (response.getStatus() == 200) {
+            return response.getEntity(Todo.class);
+        }
+        return null;
+    }
 
-	public Todo update(Todo todo) {
-		return resource.path(PATH).put(Todo.class, todo);
-	}
+    public Todo create(Todo todo) {
+        return resource.path(PATH).post(Todo.class, todo);
+    }
 
-	public void delete(Long id) {
-		resource.path(PATH).path(id.toString()).delete();
-	}
-	
-	public void reset() {
-		resource.path(PATH).delete();
-	}
+    public Todo update(Todo todo) {
+        return resource.path(PATH).put(Todo.class, todo);
+    }
+
+    public void delete(Long id) {
+        resource.path(PATH).path(id.toString()).delete();
+    }
+
+    public void reset() {
+        resource.path(PATH).delete();
+    }
 
 }

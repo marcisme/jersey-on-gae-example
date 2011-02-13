@@ -4,6 +4,7 @@ import org.springframework.roo.addon.entity.RooEntity;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.tostring.RooToString;
 import com.marcschwieterman.todo.Status;
+
 import javax.persistence.Enumerated;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,9 +21,9 @@ public class Todo {
 
     public Todo() {
     }
-    
-	public Todo(String description) {
-		this.description = description;
-	}
-    
+
+    public Todo(String description) {
+        this.description = description;
+    }
+
 }
